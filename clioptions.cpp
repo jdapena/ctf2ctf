@@ -53,6 +53,8 @@ CliOptions parseCliOptions(int argc, char** argv)
                                     {"skip-instant-events"});
     args::Flag relativeTid(parser, "rtid", "subtract pid from tid so that main threads have tid = 0 (only works if vpid and vtid properties present in the context)",
                                     {"rtid"});
+    args::Flag rawTimestamp(parser, "raw-timestamps", "use raw timestamps coming from file",
+                                    {"raw-timestamps"});
     args::Positional<fs::path> pathArg(
         parser, "path", "The path to an LTTng trace folder, will be searched recursively for trace data");
     try {
@@ -85,5 +87,6 @@ CliOptions parseCliOptions(int argc, char** argv)
         args::get(relativeTimestampsArg),
         args::get(skipInstantEventsArg),
         args::get(relativeTid),
+        args::get(rawTimestamp),
     };
 }

@@ -45,6 +45,7 @@ struct CliOptions
     bool relativeTimestamps = false;
     bool skipInstantEvents = false;
     bool relativeTid = false;
+    bool rawTimestamp = false;
 };
 
 CliOptions parseCliOptions(int argc, char** argv);

@@ -1331,7 +1331,7 @@ struct Event
         : ctf_event(event)
         , event_fields_scope(bt_ctf_get_top_level_scope(event, BT_EVENT_FIELDS))
         , name(bt_ctf_event_name(event))
-        , timestamp(bt_ctf_get_timestamp(event))
+        , timestamp(context->options.rawTimestamp ? bt_ctf_get_cycles(event) : bt_ctf_get_timestamp(event))
         , isFilteredByTime(context->isFilteredByTime(timestamp))
     {
         auto stream_packet_context_scope = bt_ctf_get_top_level_scope(event, BT_STREAM_PACKET_CONTEXT);
