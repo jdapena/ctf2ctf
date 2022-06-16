@@ -1588,6 +1588,19 @@ struct Event
             if (colonPos != name.npos)
                 category = name.substr(0, colonPos);
         }
+
+        auto scopeCategory = get_string(event, event_fields_scope, "category");
+        if (scopeCategory) {
+            if (!category.empty())
+                category += ":";
+            category += scopeCategory.value();
+        }
+
+        auto scope = get_string(event, event_fields_scope, "scope");
+        if (scope) {
+            name += ":";
+            name += scope.value();
+        }
     }
 
     const bt_ctf_event* ctf_event = nullptr;
